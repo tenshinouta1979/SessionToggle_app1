@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - App1Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased">
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">App1 - Identity Provider Simulation</h1>
+        </div>
+    </header>
+
+    <main role="main" class="container mx-auto pb-3 p-4">
+        @RenderBody()
+    </main>
+
+    <footer class="mt-10 p-4 text-center text-gray-600 text-sm">
+        &copy; 2025 App1 Simulation
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@page
+@model App1Simulation.Pages.IndexModel
+@{
+    ViewData["Title"] = "App1 Dashboard with App2";
+    Layout = "_Layout";
+}
+
+<div class="text-center bg-white p-8 rounded-xl shadow-lg mt-10">
+    <h2 class="text-4xl font-bold text-blue-700 mb-6">Welcome to App1!</h2>
+    <p class="text-lg text-gray-700 mb-4">You are successfully logged in as <span class="font-semibold">@Model.LoggedInUser</span>.</p>
+
+    @if (!string.IsNullOrEmpty(Model.App2Guid))
+    {
+        <div class="bg-blue-50 border-l-4 border-blue-400 text-blue-800 p-4 rounded-md mb-6" role="alert">
+            <p class="font-bold">Simulated GUID for App2:</p>
+            <p class="break-all text-sm mt-1">
+                <code class="bg-gray-200 p-1 rounded-sm">@Model.App2Guid</code>
+            </p>
+            <p class="text-sm mt-2">
+                This GUID is passed to App2 via the iframe URL parameter `authGuid`.
+            </p>
+        </div>
+    }
+
+    <p class="text-gray-600 mb-6">
+        Below is where App2 (the GIS application) would be embedded.
+    </p>
+
+    <div class="border border-gray-300 rounded-lg overflow-hidden shadow-inner w-full" style="height: 600px;">
+        <!-- The iframe embedding App2 -->
+        <!-- The src is now pointing to your specified localhost URL for App2 -->
+        <iframe
+            src="http://localhost:5280/?authGuid=@(Model.App2Guid)"
+            title="Embedded GIS App (App2)"
+            class="w-full h-full border-0"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        >
+            Your browser does not support iframes.
+        </iframe>
+    </div>
+
+    <div class="mt-8">
+        <a asp-page="/Logout" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+            Logout
+        </a>
+    </div>
+</div>
